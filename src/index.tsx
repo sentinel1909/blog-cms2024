@@ -1,7 +1,7 @@
 // src/index.tsx
 
 // dependencies
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
 import Root from "./views/root";
@@ -16,7 +16,6 @@ const app = new Elysia()
   .get("/", () => <Root content={<Home />} />)
   .get("/posts", () => <Root content={<PostsOverview />} />)
   .get("/admin", () => <Root content={<NewPostForm />} />)
-  .post("/submit-post", ({ body }) => console.log(body))
   .listen(3000);
 
 // log a console message that the app is running and listening for incoming requests
