@@ -5,9 +5,8 @@
 const NewPostForm = () => {
   return (
     <>
-      <fieldset>
-        <h2>Enter a new blog post</h2>
-        <form class="new-post-form" action="/submit-new-post" method="POST">
+      <fieldset id="new-post-form">
+        <form class="new-post-form" hx-post="/submit-new-post" hx-target="#new-post-form" hx-swap="outerHTML">
           <label for="title">Title: </label>
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>
@@ -17,6 +16,7 @@ const NewPostForm = () => {
           <input type="submit" value="Submit" />
         </form>
       </fieldset>
+      <span id="result"></span>
     </>
   );
 };

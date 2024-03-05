@@ -9,7 +9,7 @@ import Root from "./views/root";
 import Home from "./views/home";
 import PostsOverview from "./views/posts";
 import NewPostForm from "./views/new_post";
-import SubmitNewPost from "./routes/submit_new_post";
+import SubmitNewPost from "./queries/submit_new_post";
 
 // app instance with configuration and routes
 const app = new Elysia()
