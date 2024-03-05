@@ -7,7 +7,7 @@ const NewPostForm = () => {
     <>
       <fieldset>
         <h2>Enter a new blog post</h2>
-        <form class="new-post-form" action="/submit-post" method="POST">
+        <form class="new-post-form" action="/submit-new-post" method="POST">
           <label for="title">Title: </label>
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>

@@ -50,3 +50,6 @@ try {
   console.error("Failed to insert data:", error);
   db.run("ROLLBACK");
 }
+
+// close the database
+db.close();
