@@ -27,6 +27,7 @@ const Root = ({ content }: { content: Content }) => {
         <NavBar />
         <main>{content}</main>
         <Footer />
+        <script src="public/htmx.min.js"></script>
       </body>
     </html>
   );
