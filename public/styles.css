@@ -47,6 +47,10 @@ h6 {
     isolation: isolate;
 }
 
+fieldset {
+    border: 0;
+}
+
 /* main styles */
 
 body {
@@ -91,12 +95,23 @@ nav a {
     text-decoration: none;
 }
 
-article {
-    background-color: #f4f4f4;
-    padding: 1rem;
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
 }
 
-.new-post-form {
+.blog-article {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+
+.new-article-form {
     display: flex;
     flex-direction: column;
     max-width: 500px;
@@ -106,14 +121,14 @@ article {
     border-radius: 5px;
 }
 
-.new-post-form label {
+.new-article-form label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.new-post-form input[type="text"],
-.new-post-form input[type="date"],
-.new-post-form textarea {
+.new-article-form input[type="text"],
+.new-article-form input[type="date"],
+.new-article-form textarea {
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -121,7 +136,7 @@ article {
     width: 100%;
 }
 
-.new-post-form input[type="submit"] {
+.new-article-form input[type="submit"] {
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -130,7 +145,7 @@ article {
     cursor: pointer;
 }
 
-.new-post-form input[type="submit"]:hover {
+.new-article-form input[type="submit"]:hover {
     background-color: #0056b3;
 }
 

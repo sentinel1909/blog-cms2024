@@ -12,6 +12,7 @@ db.run(`CREATE TABLE IF NOT EXISTS posts (
   post_title TEXT,
   post_date TEXT,
   post_slug TEXT,
+  post_summary TEXT,
   post_content TEXT
 )`);
 
@@ -21,13 +22,15 @@ const posts = [
     title: "First Post",
     date: "2024-03-03",
     slug: "first-post",
-    content: "This is the content of the proverbial first post.",
+    summary: "This is the summary of the first post.",
+    content: "This is the content of the proverbial first post."
   },
   {
     title: "Second Post",
     date: "2024-03-03",
     slug: "second-post",
-    content: "This is the content of the second post.",
+    summary: "This is the summary of the first post.",
+    content: "This is the content of the second post."
   },
 ];
 
@@ -36,14 +39,15 @@ const insertStmt = db.prepare(`INSERT INTO posts (
   post_title,
   post_date,
   post_slug,
+  post_summary,
   post_content
-) VALUES (?, ?, ?, ?)`);
+) VALUES (?, ?, ?, ?, ?)`);
 
 // loop over the data and insert it into the database
 db.run("BEGIN");
 try {
   for (const post of posts) {
-    insertStmt.run(post.title, post.date, post.slug, post.content);
+    insertStmt.run(post.title, post.date, post.slug, post.summary, post.content);
   }
   db.run("COMMIT");
 } catch (error) {
