@@ -7,17 +7,17 @@ import { Database } from "bun:sqlite";
 const db = new Database("./src/blog.db");
 
 // create the posts table in the database
-db.run(`CREATE TABLE IF NOT EXISTS posts (
-  post_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  post_title TEXT,
-  post_date TEXT,
-  post_slug TEXT,
-  post_summary TEXT,
-  post_content TEXT
+db.run(`CREATE TABLE IF NOT EXISTS articles (
+  article_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  article_title TEXT,
+  article_date TEXT,
+  article_slug TEXT,
+  article_summary TEXT,
+  article_content TEXT
 )`);
 
-// some seed data for the posts table
-const posts = [
+// some seed data for the articles table
+const articles = [
   {
     title: "First Post",
     date: "2024-03-03",
@@ -35,19 +35,19 @@ const posts = [
 ];
 
 // create an insert statement to add the content into the database, bind it to a const variable
-const insertStmt = db.prepare(`INSERT INTO posts (
-  post_title,
-  post_date,
-  post_slug,
-  post_summary,
-  post_content
+const insertStmt = db.prepare(`INSERT INTO articles (
+  article_title,
+  article_date,
+  article_slug,
+  article_summary,
+  article_content
 ) VALUES (?, ?, ?, ?, ?)`);
 
 // loop over the data and insert it into the database
 db.run("BEGIN");
 try {
-  for (const post of posts) {
-    insertStmt.run(post.title, post.date, post.slug, post.summary, post.content);
+  for (const article of articles) {
+    insertStmt.run(article.title, article.date, article.slug, article.summary, article.content);
   }
   db.run("COMMIT");
 } catch (error) {

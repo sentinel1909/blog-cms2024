@@ -128,6 +128,7 @@ nav a {
 
 .new-article-form input[type="text"],
 .new-article-form input[type="date"],
+.new-article-form input[type="text"],
 .new-article-form textarea {
     padding: 8px;
     margin-bottom: 10px;

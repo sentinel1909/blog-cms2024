@@ -3,30 +3,27 @@
 // route handler which inserts form data into the database
 const SubmitNewArticle = (db: any, body: any) => {
   // bind the database insert query to a variable
-  const insertStmt = db.prepare(`INSERT INTO posts (
-    post_title,
-    post_date,
-    post_slug,
-    post_summary,
-    post_content
+  const insertStmt = db.prepare(`INSERT INTO articles (
+    article_title,
+    article_date,
+    article_slug,
+    article_summary,
+    article_content
   ) VALUES (?, ?, ?, ?, ?)`);
 
-  // create the post slug by converting the title from the form input into lower case, splitting on whitespace,
-  // then re-joining with a hyphen
-  let article_slug = body.title.toLowerCase().split(" ").join("-");
-
-  // run the insert query
+    // run the insert query
   db.run("BEGIN");
   try {
-    insertStmt.run(body.title, body.date, article_slug, body.summary, body.content);
+    insertStmt.run(body.title, body.date, body.slug, body.summary, body.content);
     db.run("COMMIT");
-    db.close();
     return `<fieldset>
         <form class="new-article-form" id="new-article-form" hx-post="/submit-new-article" hx-target="#new-article-form" hx-swap="outerHTML">
           <label for="title">Title: </label>
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>
           <input type="date" id="date" name="date" />
+          <label for="slug">Slug: </label>
+          <input type="text" id="slug" name="slug" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>

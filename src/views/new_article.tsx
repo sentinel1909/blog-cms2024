@@ -11,6 +11,8 @@ const NewArticleForm = () => {
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>
           <input type="date" id="date" name="date" />
+          <label for="title">Slug: </label>
+          <input type="text" id="slug" name="slug" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>
