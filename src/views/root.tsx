@@ -19,6 +19,7 @@ const Root = ({ content }: { content: Content }) => {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="public/blog_logo.png" />
         <link rel="stylesheet" href="public/styles.css" />
         <title>Blog CMS 2024</title>
       </head>

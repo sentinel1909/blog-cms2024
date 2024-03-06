@@ -2,9 +2,6 @@
 
 // the posts view; displays the posts from the database
 
-// dependencies
-import { Database } from "bun:sqlite";
-
 // interface to define a blog post type
 interface Article {
   article_id: number;
@@ -16,16 +13,16 @@ interface Article {
 }
 
 // type declaration for the posts type accepted by RenderPosts
-type Posts = JSX.Element | JSX.Element[] | Article | Article[];
+type Articles = JSX.Element | JSX.Element[] | Article | Article[];
 
 // render the posts in article format
-const RenderArticles = ({ articles }: { articles: Article }) => {
-  const mappedArticles: Article = articles.map((article: Article) => (
+const RenderArticles = ({ articles }: { articles: Article[] }) => {
+  const mappedArticles: Articles = articles.map((article: Article) => (
     <article class="blog-article" key={article.article_id}>
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>{article.article_summary}</p>
-      <a href="#">Do you want to know more?</a>
+      <a href="/article">Do you want to know more?</a>
     </article>
   ));
 
