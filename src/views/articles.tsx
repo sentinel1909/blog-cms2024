@@ -38,6 +38,19 @@ const ArticlesOverview = ( props: any ) => {
   const query = props.database.query("SELECT * FROM articles;");
   const articles = query.all();
   
+  if (!articles) {
+    return (
+      <>
+        <section>
+          <article>
+            <h3>Error:</h3>
+            <p>Unable to retrieve and render article summary.</p>
+          </article>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section class="blog-grid">
