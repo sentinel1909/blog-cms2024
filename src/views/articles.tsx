@@ -22,7 +22,7 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>{article.article_summary}</p>
-      <a href="/article">Do you want to know more?</a>
+      <a href={`/article/${article.article_date}/${article.article_slug}`}>Do you want to read more?</a>
     </article>
   ));
 
@@ -34,12 +34,13 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
 };
 
 // retrieve the blog posts from the database and render them as individual articles
-const ArticlesOverview = ( { database }: { database: any} ) => {
-  const articles = database.query("SELECT * FROM articles;").all() as Article[];
+const ArticlesOverview = ( props: any ) => {
+  const query = props.database.query("SELECT * FROM articles;");
+  const articles = query.all();
   
   return (
     <>
-      <section  class="blog-grid">
+      <section class="blog-grid">
         <RenderArticles articles={articles} />
       </section>
     </>

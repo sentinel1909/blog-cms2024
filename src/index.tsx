@@ -7,7 +7,7 @@ import { html } from "@elysiajs/html";
 import { staticPlugin } from "@elysiajs/static";
 import Root from "./views/root";
 import Home from "./views/home";
-import Article from "./views/article";
+import RenderArticle from "./views/article";
 import ArticlesOverview from "./views/articles";
 import NewArticleForm from "./views/new_article";
 import SubmitNewArticle from "./routes/submit_new_article";
@@ -18,7 +18,7 @@ const app = new Elysia()
   .use(staticPlugin())
   .decorate("db", new Database("./src/blog.db"))
   .get("/", () => <Root content={<Home />} />)
-  .get("/article", () => <Root content={<Article />} />)
+  .get("/article/:articleDate/:articleSlug", ({ db, params: dateandSlug }) => <Root content={<RenderArticle database={db} parameters={dateandSlug} />} />)
   .get("/articles", ({ db }) => <Root content={<ArticlesOverview database={db} />} />)
   .get("/new-article", () => <Root content={<NewArticleForm />} />)
   .post("/submit-new-article", ({ db, body }) => SubmitNewArticle(db, body), {

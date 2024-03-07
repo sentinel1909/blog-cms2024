@@ -2,16 +2,19 @@
 
 // a view which displays a single post
 
-const Article = () => {
+const RenderArticle = (props: any) => {
+  const query = props.database.query("SELECT article_content FROM articles WHERE article_slug = ?", [props.parameters.articleSlug]);
+  const article = query.get();
+      
   return (
     <>
       <section>
         <article>
-          <p>The article content.</p>
+          <p>{article.article_content}</p>
         </article>
       </section>    
     </>
   );
 };
 
-export default Article;
+export default RenderArticle;

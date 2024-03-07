@@ -20,7 +20,7 @@ const Root = ({ content }: { content: Content }) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/x-icon" href="public/blog_logo.png" />
-        <link rel="stylesheet" href="public/styles.css" />
+        <link rel="stylesheet" href="/public/styles.css" />
         <title>Blog CMS 2024</title>
       </head>
       <body>
@@ -28,7 +28,7 @@ const Root = ({ content }: { content: Content }) => {
         <NavBar />
         <main>{content}</main>
         <Footer />
-        <script src="public/htmx.min.js"></script>
+        <script src="/public/htmx.min.js"></script>
       </body>
     </html>
   );
