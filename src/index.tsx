@@ -9,7 +9,7 @@ import Root from "./views/root";
 import Home from "./views/home";
 import RenderArticle from "./views/article";
 import ArticlesOverview from "./views/articles";
-import NewArticleForm from "./views/new_article";
+import CreateArticleForm from "./views/new_article";
 import CreateArticle from "./routes/create_article";
 import EditArticle from "./routes/edit_article";
 import DeleteArticle from "./routes/delete_article";
@@ -26,12 +26,13 @@ const app = new Elysia()
   .get("/articles", ({ db }) => (
     <Root content={<ArticlesOverview database={db} />} />
   ))
-  .get("/new-article", () => <Root content={<NewArticleForm />} />)
+  .get("/new-article", () => <Root content={<CreateArticleForm />} />)
   .post("/create-article", ({ db, body }) => CreateArticle(db, body), {
     body: t.Object({
       title: t.String(),
       date: t.String(),
       slug: t.String(),
+      category: t.String(),
       summary: t.String(),
       content: t.String(),
     }),

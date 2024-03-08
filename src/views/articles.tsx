@@ -8,6 +8,7 @@ interface Article {
   article_title: string;
   article_date: string;
   article_slug: string;
+  article_category: string;
   article_summary: string;
   article_content: string;
 }
@@ -21,6 +22,7 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
     <article class="blog-article" key={article.article_id}>
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
+      <p>Category: {article.article_category}</p>
       <p>{article.article_summary}</p>
       <a href={`/article/${article.article_date}/${article.article_slug}`}>
         Do you want to read more?

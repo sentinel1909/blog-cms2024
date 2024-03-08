@@ -7,6 +7,7 @@ const Home = () => {
     <>
       <section>
         <h2>This is the Home view.</h2>
+        <p>This page will feature the latest blog article.</p>
       </section>
     </>
   );

@@ -12,6 +12,7 @@ db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_title TEXT,
   article_date TEXT,
   article_slug TEXT,
+  article_category TEXT,
   article_summary TEXT,
   article_content TEXT
 )`);
@@ -22,6 +23,7 @@ const articles = [
     title: "First Post",
     date: "2024-03-03",
     slug: "first-post",
+    category: "administrative",
     summary: "This is the summary of the first post.",
     content: "This is the content of the proverbial first post."
   },
@@ -29,6 +31,7 @@ const articles = [
     title: "Second Post",
     date: "2024-03-03",
     slug: "second-post",
+    category: "administrative",
     summary: "This is the summary of the first post.",
     content: "This is the content of the second post."
   },
@@ -39,15 +42,16 @@ const insertStmt = db.prepare(`INSERT INTO articles (
   article_title,
   article_date,
   article_slug,
+  article_category,
   article_summary,
   article_content
-) VALUES (?, ?, ?, ?, ?)`);
+) VALUES (?, ?, ?, ?, ?, ?)`);
 
 // loop over the data and insert it into the database
 db.run("BEGIN");
 try {
   for (const article of articles) {
-    insertStmt.run(article.title, article.date, article.slug, article.summary, article.content);
+    insertStmt.run(article.title, article.date, article.slug, article.category, article.summary, article.content);
   }
   db.run("COMMIT");
 } catch (error) {
