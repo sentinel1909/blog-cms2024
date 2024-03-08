@@ -10,7 +10,9 @@ import Home from "./views/home";
 import RenderArticle from "./views/article";
 import ArticlesOverview from "./views/articles";
 import NewArticleForm from "./views/new_article";
-import SubmitNewArticle from "./routes/submit_new_article";
+import CreateArticle from "./routes/create_article";
+import EditArticle from "./routes/edit_article";
+import DeleteArticle from "./routes/delete_article";
 
 // app instance with configuration and routes
 const app = new Elysia()
@@ -18,10 +20,14 @@ const app = new Elysia()
   .use(staticPlugin())
   .decorate("db", new Database("./src/blog.db"))
   .get("/", () => <Root content={<Home />} />)
-  .get("/article/:articleDate/:articleSlug", ({ db, params: dateandSlug }) => <Root content={<RenderArticle database={db} parameters={dateandSlug} />} />)
-  .get("/articles", ({ db }) => <Root content={<ArticlesOverview database={db} />} />)
+  .get("/article/:articleDate/:articleSlug", ({ db, params: dateandSlug }) => (
+    <Root content={<RenderArticle database={db} parameters={dateandSlug} />} />
+  ))
+  .get("/articles", ({ db }) => (
+    <Root content={<ArticlesOverview database={db} />} />
+  ))
   .get("/new-article", () => <Root content={<NewArticleForm />} />)
-  .post("/submit-new-article", ({ db, body }) => SubmitNewArticle(db, body), {
+  .post("/create-article", ({ db, body }) => CreateArticle(db, body), {
     body: t.Object({
       title: t.String(),
       date: t.String(),
@@ -30,6 +36,8 @@ const app = new Elysia()
       content: t.String(),
     }),
   })
+  .put("/edit-article", ({ db }) => EditArticle(db))
+  .delete("/delete-article", ({ db }) => DeleteArticle(db))
   .listen(3000);
 
 // log a console message that the app is running and listening for incoming requests

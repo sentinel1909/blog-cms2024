@@ -22,22 +22,30 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>{article.article_summary}</p>
-      <a href={`/article/${article.article_date}/${article.article_slug}`}>Do you want to read more?</a>
+      <a href={`/article/${article.article_date}/${article.article_slug}`}>
+        Do you want to read more?
+      </a>
+      <table>
+        <tr>
+          <td>
+            <button>Delete</button>
+          </td>
+          <td>
+            <button>Edit</button>
+          </td>
+        </tr>
+      </table>
     </article>
   ));
 
-  return (
-    <>
-      {mappedArticles}
-    </>
-  );
+  return <>{mappedArticles}</>;
 };
 
 // retrieve the blog posts from the database and render them as individual articles
-const ArticlesOverview = ( props: any ) => {
+const ArticlesOverview = (props: any) => {
   const query = props.database.query("SELECT * FROM articles;");
   const articles = query.all();
-  
+
   if (!articles) {
     return (
       <>

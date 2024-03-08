@@ -1,7 +1,7 @@
-// src/routes/submit_new_post.ts
+// src/routes/create_article.ts
 
 // route handler which inserts form data into the database
-const SubmitNewArticle = (db: any, body: any) => {
+const CreateArticle = (db: any, body: any) => {
   // bind the database insert query to a variable
   const insertStmt = db.prepare(`INSERT INTO articles (
     article_title,
@@ -11,10 +11,16 @@ const SubmitNewArticle = (db: any, body: any) => {
     article_content
   ) VALUES (?, ?, ?, ?, ?)`);
 
-    // run the insert query
+  // run the insert query
   db.run("BEGIN");
   try {
-    insertStmt.run(body.title, body.date, body.slug, body.summary, body.content);
+    insertStmt.run(
+      body.title,
+      body.date,
+      body.slug,
+      body.summary,
+      body.content,
+    );
     db.run("COMMIT");
     return `<fieldset>
         <form class="new-article-form" id="new-article-form" hx-post="/submit-new-article" hx-target="#new-article-form" hx-swap="outerHTML">
@@ -31,11 +37,11 @@ const SubmitNewArticle = (db: any, body: any) => {
           <input type="submit" value="Submit" />
         </form>
         <span>Form submitted successfully.</span>
-      </fieldset>`
+      </fieldset>`;
   } catch (error) {
     console.error("Failed to insert data:", error);
     db.run("ROLLBACK");
   }
 };
 
-export default SubmitNewArticle;
+export default CreateArticle;
