@@ -2,6 +2,8 @@
 
 // dependencies
 import { Database } from "bun:sqlite";
+import fs from "fs";
+import matter from "gray-matter";
 
 // create a new database instance
 const db = new Database("./src/blog.db");
@@ -17,25 +19,24 @@ db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_content TEXT
 )`);
 
-// some seed data for the articles table
-const articles = [
-  {
-    title: "First Post",
-    date: "2024-03-03",
-    slug: "first-post",
-    category: "administrative",
-    summary: "This is the summary of the first post.",
-    content: "This is the content of the proverbial first post."
-  },
-  {
-    title: "Second Post",
-    date: "2024-03-03",
-    slug: "second-post",
-    category: "administrative",
-    summary: "This is the summary of the first post.",
-    content: "This is the content of the second post."
-  },
-];
+// read in the markdown files from the content folder
+const folderPath = "./src/content/";
+const files = fs.readdirSync(folderPath);
+
+// iterate through the files and read their contents
+let articles = [];
+for (const file of files) {
+  const filePath = `${folderPath}/${file}`;
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  articles.push(fileContents);
+}
+
+// iterate over the array of articles, parse with frontmatter
+let parsedArticles = [];
+for (const article of articles) {
+  let frontmatter = matter(article);
+  parsedArticles.push(frontmatter);
+}
 
 // create an insert statement to add the content into the database, bind it to a const variable
 const insertStmt = db.prepare(`INSERT INTO articles (
@@ -50,8 +51,8 @@ const insertStmt = db.prepare(`INSERT INTO articles (
 // loop over the data and insert it into the database
 db.run("BEGIN");
 try {
-  for (const article of articles) {
-    insertStmt.run(article.title, article.date, article.slug, article.category, article.summary, article.content);
+  for (const parsedArticle of parsedArticles) {
+    insertStmt.run(parsedArticle.data.title, parsedArticle.data.date, parsedArticle.data.slug, parsedArticle.data.category, parsedArticle.data.summary, parsedArticle.content);
   }
   db.run("COMMIT");
 } catch (error) {

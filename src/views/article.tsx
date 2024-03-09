@@ -26,7 +26,9 @@ const RenderArticle = (props: any) => {
       
   return (
     <>
-      {convertedContent}    
+      <div class="article-container">
+        {convertedContent}
+      </div>    
     </>
   );
 };
