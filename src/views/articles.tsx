@@ -19,7 +19,7 @@ type Articles = JSX.Element | JSX.Element[] | Article | Article[];
 // render the posts in article format
 const RenderArticles = ({ articles }: { articles: Article[] }) => {
   const mappedArticles: Articles = articles.map((article: Article) => (
-    <article class="blog-article" key={article.article_id}>
+    <article class="blog-article" id="article-id" key={article.article_id}>
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>Category: {article.article_category}</p>
@@ -30,7 +30,7 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
       <table>
         <tr>
           <td>
-            <button>Delete</button>
+            <button hx-delete={`/delete-article/${article.article_id}`} hx-target="#article-id" hx-swap="outerHTML">Delete</button>
           </td>
           <td>
             <button>Edit</button>
@@ -48,13 +48,13 @@ const ArticlesOverview = (props: any) => {
   const query = props.database.query("SELECT * FROM articles;");
   const articles = query.all();
 
-  if (!articles) {
+  if (articles.length === 0) {
     return (
       <>
         <section>
           <article>
-            <h3>Error:</h3>
-            <p>Unable to retrieve and render article summary.</p>
+            <h3>No Articles</h3>
+            <p>There are no articles in the database.</p>
           </article>
         </section>
       </>

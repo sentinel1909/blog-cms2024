@@ -2,6 +2,8 @@
 
 // deletes the selected article from the database
 
-const DeleteArticle = (db: any) => {};
+const DeleteArticle = (db: any, articleId: any) => {
+  db.run("DELETE FROM articles WHERE article_id = ?", articleId.articleId);
+};
 
 export default DeleteArticle;

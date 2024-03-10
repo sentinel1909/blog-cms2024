@@ -179,6 +179,39 @@ nav a {
     background-color: #0056b3;
 }
 
+.edit-article-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-article-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.edit-article-form textarea {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.edit-article-form input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 footer {
     background-color: #333;
     color: white;

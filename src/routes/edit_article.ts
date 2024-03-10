@@ -2,6 +2,10 @@
 
 // edits the selected article from the database
 
-const EditArticle = (db: any) => {};
+const EditArticle = (db: any, articleId: any) => {
+
+  
+
+};
 
 export default EditArticle;

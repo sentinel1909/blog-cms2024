@@ -1,9 +1,10 @@
 {
   "name": "blog-cms2024",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "scripts": {
+    "dev": "bun run --watch src/index.tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.tsx"
+    "build": "bun build src/index.tsx --target bun --compile --outfile blog-cms2024"
   },
   "dependencies": {
     "@elysiajs/html": "^0.8.0",
