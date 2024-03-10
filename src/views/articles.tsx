@@ -19,7 +19,7 @@ type Articles = JSX.Element | JSX.Element[] | Article | Article[];
 // render the posts in article format
 const RenderArticles = ({ articles }: { articles: Article[] }) => {
   const mappedArticles: Articles = articles.map((article: Article) => (
-    <article class="blog-article" id="article-id" key={article.article_id}>
+    <article class="blog-article" id="blog-article" key={article.article_id}>
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>Category: {article.article_category}</p>
@@ -30,10 +30,10 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
       <table>
         <tr>
           <td>
-            <button hx-delete={`/delete-article/${article.article_id}`} hx-target="#article-id" hx-swap="outerHTML">Delete</button>
+            <button hx-delete={`/delete-article/${article.article_id}`} hx-target="#blog-article" hx-swap="innerHTML">Delete</button>
           </td>
           <td>
-            <button>Edit</button>
+            <button hx-get="/edit-article" hx-target="#content-area" hx-swap="outerHTML">Edit</button>
           </td>
         </tr>
       </table>
