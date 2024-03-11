@@ -11,12 +11,12 @@ const db = new Database("./src/blog.db");
 // create the posts table in the database
 db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  article_title TEXT,
-  article_date TEXT,
-  article_slug TEXT,
-  article_category TEXT,
-  article_summary TEXT,
-  article_content TEXT
+  article_title TEXT NOT NULL UNIQUE,
+  article_date TEXT NOT NULL,
+  article_slug TEXT NOT NULL,
+  article_category TEXT NOT NULL,
+  article_summary TEXT NOT NULL,
+  article_content TEXT NOT NULL
 )`);
 
 // read in the markdown files from the content folder
