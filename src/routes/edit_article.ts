@@ -4,8 +4,6 @@
 
 const EditArticle = (db: any, articleId: any) => {
 
-  
-
 };
 
 export default EditArticle;
