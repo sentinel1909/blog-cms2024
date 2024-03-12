@@ -2,7 +2,6 @@
 
 // route handler which inserts form data into the database
 const CreateArticle = (db: any, body: any) => {
-  // bind the database insert query to a variable
   const insertStmt = db.prepare(`INSERT INTO articles (
     article_title,
     article_date,
@@ -12,7 +11,6 @@ const CreateArticle = (db: any, body: any) => {
     article_content
   ) VALUES (?, ?, ?, ?, ?, ?)`);
 
-  // run the insert query
   db.run("BEGIN");
   try {
     insertStmt.run(

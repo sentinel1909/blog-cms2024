@@ -9,10 +9,8 @@ import Header from "../components/header";
 import NavBar from "../components/navbar";
 import Footer from "../components/footer";
 
-// type declaration for the Root component content prop
 type Content = JSX.Element | JSX.Element[];
 
-// the common root component which renders the content on each page
 const Root = ({ content }: { content: Content }) => {
   return (
     <html lang="en">

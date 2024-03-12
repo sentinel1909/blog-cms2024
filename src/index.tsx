@@ -38,8 +38,12 @@ const app = new Elysia()
       content: t.String(),
     }),
   })
-  .get("/edit-article", () => <Root content={<EditArticleForm />} />)
-  .put("/edit-article/:articleId", ({ db, params: articleId }) => EditArticle(db, articleId))
+  .get("/edit-article/:articleId", ({ db, params: articleId }) => <EditArticleForm database={db} parameters={articleId} />)
+  .put("/edit-article/:articleId", ({ db, body, params: articleId }) => EditArticle(db, body, articleId), {
+    body: t.Object({
+      content: t.String(),
+    }),
+  })
   .delete("/delete-article/:articleId", ({ db, params: articleId }) => DeleteArticle(db, articleId))
   .listen(3000);
 

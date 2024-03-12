@@ -16,7 +16,6 @@ interface Article {
 // type declaration for the posts type accepted by RenderPosts
 type Articles = JSX.Element | JSX.Element[] | Article | Article[];
 
-// render the posts in article format
 const RenderArticles = ({ articles }: { articles: Article[] }) => {
   const mappedArticles: Articles = articles.map((article: Article) => (
     <article class="blog-article" id={`blog-article-${article.article_id}`}>
@@ -25,7 +24,7 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
       <p>Category: {article.article_category}</p>
       <p>{article.article_summary}</p>
       <a href={`/article/${article.article_date}/${article.article_slug}`}>
-        Do you want to read more?
+        Do you want to know more?
       </a>
       <table>
         <tr>
@@ -33,7 +32,7 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
             <button hx-delete={`/delete-article/${article.article_id}`} hx-target={`#blog-article-${article.article_id}`} hx-swap="innerHTML">Delete</button>
           </td>
           <td>
-            <button hx-get="/edit-article" hx-target="#content-area" hx-swap="outerHTML">Edit</button>
+            <button hx-get={`/edit-article/${article.article_id}`} hx-target="#blog-grid" hx-swap="outerHTML">Edit</button>
           </td>
         </tr>
       </table>
@@ -43,7 +42,6 @@ const RenderArticles = ({ articles }: { articles: Article[] }) => {
   return <>{mappedArticles}</>;
 };
 
-// retrieve the blog posts from the database and render them as individual articles
 const ArticlesOverview = (props: any) => {
   const query = props.database.query("SELECT * FROM articles;");
   const articles = query.all();
@@ -53,7 +51,6 @@ const ArticlesOverview = (props: any) => {
       <>
         <section>
           <article>
-            <h3>No Articles</h3>
             <p>There are no articles in the database.</p>
           </article>
         </section>
@@ -63,7 +60,7 @@ const ArticlesOverview = (props: any) => {
 
   return (
     <>
-      <section class="blog-grid">
+      <section class="blog-grid" id="blog-grid">
         <RenderArticles articles={articles} />
       </section>
     </>
