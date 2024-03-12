@@ -1,10 +1,12 @@
 {
   "name": "blog-cms2024",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "A content management system for a blog",
+  "license": "MIT",
   "scripts": {
     "dev": "bun run --watch src/index.tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bun build src/index.tsx --target bun --compile --outfile blog-cms2024"
+    "build": "bun build --compile --minify --sourcemap ./src/index.tsx --outfile blog-cms2024"
   },
   "dependencies": {
     "@elysiajs/html": "^0.8.0",

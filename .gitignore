@@ -3,6 +3,7 @@
 # configuration
 .vscode
 .zed
+blog-cms2024.code-workspace
 
 # dependencies
 /node_modules
@@ -44,3 +45,6 @@ yarn-error.log*
 **/*.log
 package-lock.json
 **/*.bun
+
+# executable
+blog-cms2024
