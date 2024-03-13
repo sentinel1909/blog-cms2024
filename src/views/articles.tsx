@@ -8,6 +8,7 @@ const RenderArticles = (props: any) => {
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>
       <p>Category: {article.article_category}</p>
+      <p>Tag: {article.article_tag}</p>
       <p>{article.article_summary}</p>
       <a href={`/article/${article.article_date}/${article.article_slug}`}>
         Do you want to know more?
@@ -29,7 +30,7 @@ const RenderArticles = (props: any) => {
 };
 
 const ArticlesOverview = (props: any) => {
-  const query = props.database.query("SELECT * FROM articles;");
+  const query = props.database.query("SELECT * FROM articles ORDER BY article_date");
   const articles = query.all();
 
   if (articles.length === 0) {

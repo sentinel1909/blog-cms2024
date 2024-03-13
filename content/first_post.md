@@ -3,9 +3,10 @@ title: "The Proverbial First Post"
 date: "2024-03-08"
 slug: "first-post"
 category: "administrative"
-summary: "This is the summary of the proverbial first post."
+tag: "none"
+summary: "This is the summary of the first post."
 ---
 
-# The Proverbial First Post
+# The First Post
 
 This is the content of the first post.
