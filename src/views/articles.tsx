@@ -2,22 +2,8 @@
 
 // the posts view; displays the posts from the database
 
-// interface to define a blog post type
-interface Article {
-  article_id: number;
-  article_title: string;
-  article_date: string;
-  article_slug: string;
-  article_category: string;
-  article_summary: string;
-  article_content: string;
-}
-
-// type declaration for the posts type accepted by RenderPosts
-type Articles = JSX.Element | JSX.Element[] | Article | Article[];
-
-const RenderArticles = ({ articles }: { articles: Article[] }) => {
-  const mappedArticles: Articles = articles.map((article: Article) => (
+const RenderArticles = (props: any) => {
+  const mappedArticles= props.articles.map((article: any) => (
     <article class="blog-article" id={`blog-article-${article.article_id}`}>
       <h3>{article.article_title}</h3>
       <h4>{article.article_date}</h4>

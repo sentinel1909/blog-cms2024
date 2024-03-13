@@ -5,10 +5,8 @@ import { Database } from "bun:sqlite";
 import fs from "fs";
 import matter from "gray-matter";
 
-// create a new database instance
-const db = new Database("./src/blog.db");
+const db = new Database("./blog.db");
 
-// create the posts table in the database
 db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_id INTEGER PRIMARY KEY AUTOINCREMENT,
   article_title TEXT NOT NULL UNIQUE,
@@ -19,11 +17,9 @@ db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_content TEXT NOT NULL
 )`);
 
-// read in the markdown files from the content folder
-const folderPath = "./src/content/";
+const folderPath = "./content/";
 const files = fs.readdirSync(folderPath);
 
-// iterate through the files and read their contents
 let articles = [];
 for (const file of files) {
   const filePath = `${folderPath}/${file}`;
@@ -31,14 +27,12 @@ for (const file of files) {
   articles.push(fileContents);
 }
 
-// iterate over the array of articles, parse with frontmatter
 let parsedArticles = [];
 for (const article of articles) {
   let frontmatter = matter(article);
   parsedArticles.push(frontmatter);
 }
 
-// create an insert statement to add the content into the database, bind it to a const variable
 const insertStmt = db.prepare(`INSERT INTO articles (
   article_title,
   article_date,
@@ -48,7 +42,6 @@ const insertStmt = db.prepare(`INSERT INTO articles (
   article_content
 ) VALUES (?, ?, ?, ?, ?, ?)`);
 
-// loop over the data and insert it into the database
 db.run("BEGIN");
 try {
   for (const parsedArticle of parsedArticles) {
@@ -60,5 +53,4 @@ try {
   db.run("ROLLBACK");
 }
 
-// close the database
 db.close();

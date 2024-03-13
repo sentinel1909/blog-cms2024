@@ -1,6 +1,5 @@
 // src/routes/create_article.ts
 
-// route handler which inserts form data into the database
 const CreateArticle = (db: any, body: any) => {
   const insertStmt = db.prepare(`INSERT INTO articles (
     article_title,

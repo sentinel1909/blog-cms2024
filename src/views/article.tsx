@@ -3,7 +3,7 @@
 // a view which displays a single post
 
 // dependencies
-const showdown = require('showdown');
+import showdown from 'showdown';
 
 const RenderArticle = (props: any) => {
   const slug = props.parameters.articleSlug;
@@ -25,9 +25,11 @@ const RenderArticle = (props: any) => {
       
   return (
     <>
-      <div class="article-container">
-        {content}
-      </div>    
+      <section>
+        <article class="article-container">
+          {content}
+        </article>
+      </section>    
     </>
   );
 };

@@ -1,6 +1,6 @@
 {
   "name": "blog-cms2024",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A content management system for a blog",
   "license": "MIT",
   "scripts": {

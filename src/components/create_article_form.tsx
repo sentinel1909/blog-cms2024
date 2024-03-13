@@ -16,9 +16,9 @@ const CreateArticleForm = () => {
           <label for="slug">Category: </label>
           <input type="text" id="category" name="category" />
           <label for="summary">Summary:</label>
-          <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
+          <textarea id="summary" name="summary" rows="10" cols="100"></textarea>
           <label for="content">Content:</label>
-          <textarea id="content" name="content" rows="10" cols="50"></textarea>
+          <textarea id="content" name="content" rows="25" cols="100"></textarea>
           <input type="submit" value="Submit" />
         </form>
       </fieldset>

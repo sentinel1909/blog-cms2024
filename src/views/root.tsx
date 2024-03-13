@@ -7,11 +7,10 @@
 // dependencies
 import Header from "../components/header";
 import NavBar from "../components/navbar";
+import Content from "../components/content";
 import Footer from "../components/footer";
 
-type Content = JSX.Element | JSX.Element[];
-
-const Root = ({ content }: { content: Content }) => {
+const Root = (props: any) => {
   return (
     <html lang="en">
       <head>
@@ -24,7 +23,7 @@ const Root = ({ content }: { content: Content }) => {
       <body>
         <Header />
         <NavBar />
-        <main>{content}</main>
+        <Content content={props.content} />
         <Footer />
         <script src="/public/htmx.min.js"></script>
       </body>
