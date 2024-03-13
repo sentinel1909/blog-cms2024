@@ -14,10 +14,12 @@ const EditArticleForm = (props: any) => {
           <input type="text" id="title" name="title" value={`${article.article_title}`} />
           <label for="date">Date: </label>
           <input type="date" id="date" name="date" value={`${article.article_date}`} />
-          <label for="title">Slug: </label>
+          <label for="slug">Slug: </label>
           <input type="text" id="slug" name="slug" value={`${article.article_slug}`} />
-          <label for="slug">Category: </label>
+          <label for="category">Category: </label>
           <input type="text" id="category" name="category" value={`${article.article_category}`} />
+          <label for="tag">Tag: </label>
+          <input type="text" id="tag" name="tag" value={`${article.article_tag}`} />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50">{article.article_summary}</textarea>
           <label for="content">Content:</label>

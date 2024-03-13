@@ -13,6 +13,7 @@ db.run(`CREATE TABLE IF NOT EXISTS articles (
   article_date TEXT NOT NULL,
   article_slug TEXT NOT NULL,
   article_category TEXT NOT NULL,
+  article_tag TEXT NOT NULL,
   article_summary TEXT NOT NULL,
   article_content TEXT NOT NULL
 )`);
@@ -38,14 +39,15 @@ const insertStmt = db.prepare(`INSERT INTO articles (
   article_date,
   article_slug,
   article_category,
+  article_tag,
   article_summary,
   article_content
-) VALUES (?, ?, ?, ?, ?, ?)`);
+) VALUES (?, ?, ?, ?, ?, ?, ?)`);
 
 db.run("BEGIN");
 try {
   for (const parsedArticle of parsedArticles) {
-    insertStmt.run(parsedArticle.data.title, parsedArticle.data.date, parsedArticle.data.slug, parsedArticle.data.category, parsedArticle.data.summary, parsedArticle.content);
+    insertStmt.run(parsedArticle.data.title, parsedArticle.data.date, parsedArticle.data.slug, parsedArticle.data.category, parsedArticle.data.tag, parsedArticle.data.summary, parsedArticle.content);
   }
   db.run("COMMIT");
 } catch (error) {

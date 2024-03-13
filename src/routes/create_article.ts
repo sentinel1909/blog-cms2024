@@ -6,9 +6,10 @@ const CreateArticle = (db: any, body: any) => {
     article_date,
     article_slug,
     article_category,
+    article_tag,
     article_summary,
     article_content
-  ) VALUES (?, ?, ?, ?, ?, ?)`);
+  ) VALUES (?, ?, ?, ?, ?, ?, ?)`);
 
   db.run("BEGIN");
   try {
@@ -17,6 +18,7 @@ const CreateArticle = (db: any, body: any) => {
       body.date,
       body.slug,
       body.category,
+      body.tag,
       body.summary,
       body.content,
     );
@@ -29,8 +31,10 @@ const CreateArticle = (db: any, body: any) => {
           <input type="date" id="date" name="date" />
           <label for="slug">Slug: </label>
           <input type="text" id="slug" name="slug" />
-          <label for="slug">Category: </label>
+          <label for="category">Category: </label>
           <input type="text" id="category name="category" />
+          <label for="tag">Tag: </label>
+          <input type="text" id="tag" name="tag" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>
@@ -50,15 +54,17 @@ const CreateArticle = (db: any, body: any) => {
           <input type="date" id="date" name="date" />
           <label for="slug">Slug: </label>
           <input type="text" id="slug" name="slug" />
-          <label for="slug">Category: </label>
-          <input type="text" id="category name="category" />
+          <label for="category">Category: </label>
+          <input type="text" id="category" name="category" />
+          <label for="tag">Tag: </label>
+          <input type="text" id="tag" name="tag" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>
           <textarea id="content" name="content" rows="10" cols="50"></textarea>
           <input type="submit" value="Submit" />
         </form>
-        <span>Error: Duplicate article title, please create something new.</span>
+        <span>Error: Duplicate article title detected, please create something new.</span>
       </fieldset>`
   }
 };

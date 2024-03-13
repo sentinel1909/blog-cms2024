@@ -4,10 +4,10 @@
 
 const EditArticle = (db: any, body: any, articleId: any) => {
   
-  const insertStmt = db.prepare(`UPDATE articles SET article_title = ?, article_date = ?, article_slug = ?, article_category = ?, article_summary = ?, article_content = ? WHERE article_id = ?`);
+  const insertStmt = db.prepare(`UPDATE articles SET article_title = ?, article_date = ?, article_slug = ?, article_category = ?, article_tag = ?, article_summary = ?, article_content = ? WHERE article_id = ?`);
   db.run("BEGIN");
   try {
-    insertStmt.run(body.title, body.date, body.slug, body.category, body.summary, body.content, articleId.articleId);
+    insertStmt.run(body.title, body.date, body.slug, body.category, body.tag, body.summary, body.content, articleId.articleId);
     db.run("COMMIT");
     return (
     `
@@ -17,10 +17,12 @@ const EditArticle = (db: any, body: any, articleId: any) => {
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>
           <input type="date" id="date" name="date" />
-          <label for="title">Slug: </label>
+          <label for="slug">Slug: </label>
           <input type="text" id="slug" name="slug" />
-          <label for="slug">Category: </label>
+          <label for="category">Category: </label>
           <input type="text" id="category" name="category" />
+          <label for="tag">Tag: </label>
+          <input type="text" id="tag" name="tag" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>
@@ -42,10 +44,12 @@ const EditArticle = (db: any, body: any, articleId: any) => {
           <input type="text" id="title" name="title" />
           <label for="date">Date: </label>
           <input type="date" id="date" name="date" />
-          <label for="title">Slug: </label>
+          <label for="slug">Slug: </label>
           <input type="text" id="slug" name="slug" />
-          <label for="slug">Category: </label>
+          <label for="category">Category: </label>
           <input type="text" id="category" name="category" />
+          <label for="tag">Tag: </label>
+          <input type="text" id="tag" name="tag" />
           <label for="summary">Summary:</label>
           <textarea id="summary" name="summary" rows="10" cols="50"></textarea>
           <label for="content">Content:</label>
